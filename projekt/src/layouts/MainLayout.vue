@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout>
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar style="color: white; background-color: red">
         <q-btn
           flat
           dense
@@ -12,25 +12,19 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          <div class="text-h6"><b>LinkDJ - sustav za rezervaciju DJ-a</b></div>
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div class="text-bold">OG developeri: Kiki i Marko</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
+    <q-drawer v-model="leftDrawerOpen" style="background-color: red">
+      <q-list style="color: black; background-color: red">
+        <q-item-label class="text-bold" header style="color: black">
+          IZBORNIK
         </q-item-label>
-
+        <q-separator color="black" />
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -46,71 +40,78 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+import { defineComponent, ref } from "vue";
+import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: "Prijava u sustav",
+    caption: "Korisničko ime i lozinka",
+    icon: "login",
+    link: "auth",
+    target: "_self",
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    title: "Pregled Dj-eva",
+    caption: "Pregledaj prijavljene DJ-eve",
+    icon: "DJ",
+    link: "/",
+    target: "_self",
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    title: "Novi DJ...",
+    caption: "Unesi osobne podatke",
+    icon: "input",
+    link: "unos",
+    target: "_self",
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
+    title: "Pregled rezervacija",
+    caption: "Pregledaj rezerirane termine",
+    icon: "today",
+    link: "unos",
+    target: "_self",
   },
   {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
+    title: "Rezerviraj DJ-a",
+    caption: "Rezervacija termin kod željenog DJ-a",
+    icon: "bookmark",
+    link: "unos",
+    target: "_self",
   },
   {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
+    title: "Rasprava",
+    caption: "Diskutiraj s ostalim Dj-evima",
+    icon: "chat",
+    link: "unos",
+    target: "_self",
   },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
+  /*{
+    title: "Testiranje Axiosa",
+    caption: "služi za testiranje Axiosa",
+    icon: "swap_horizontal_circle",
+    link: "axo",
+    target: "_self",
+  },*/
+];
 
 export default defineComponent({
-  name: 'MainLayout',
+  name: "MainLayout",
 
   components: {
-    EssentialLink
+    EssentialLink,
   },
 
-  setup () {
-    const leftDrawerOpen = ref(false)
+  setup() {
+    const leftDrawerOpen = ref(false);
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-})
+      toggleLeftDrawer() {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+    };
+  },
+});
 </script>
