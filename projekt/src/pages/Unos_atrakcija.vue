@@ -1,83 +1,71 @@
 <template>
   <div class="bg-image">
-  <q-page padding class="flex flex-center">
-    <q-card style="width: 350px;">
-      <q-card-section>
-        <div class="q-gutter-md full-with; flex-center;" style="max-width: 400px;">
-    <div class="" style="max-width: 350px; max-height: 520px;">
-      <div class="text-h5 text-weight-bold text-center text-red" style="color:black; height: 45px;" >Unos osobnih podataka DJ-a</div>
-      <q-separator color="black" class="bold-separator"/>
-      <q-input ref="DJimeRef" v-model="inputDJime" label="DJ ime" placeholder="Unesite DJ ime">
-      </q-input>
+    <q-page padding class="flex flex-center">
+      <q-card style="width: 350px;">
+        <q-card-section>
+          <div class="q-gutter-md full-with; flex-center;" style="max-width: 400px;">
+            <div class="" style="max-width: 350px; max-height: 520px;">
+              <div class="text-h5 text-weight-bold text-center text-red;" style="color:red; height: 45px;">Unos osobnih
+                podataka DJ-a</div>
+              <q-separator color="black" class="bold-separator" />
+              <q-input ref="DJimeRef" v-model="inputDJime" label="DJ ime" placeholder="Unesite DJ ime">
+              </q-input>
 
-      <q-input ref="imeRef" v-model="inputime" label="Ime" placeholder="Unesite ime ">
-      </q-input>
+              <q-input ref="imeRef" v-model="inputime" label="Ime" placeholder="Unesite ime ">
+              </q-input>
 
-      <q-input ref="prezimeRef" v-model="inputprezime" label="Prezime" placeholder="Unesite prezime">
-      </q-input>
+              <q-input ref="prezimeRef" v-model="inputprezime" label="Prezime" placeholder="Unesite prezime">
+              </q-input>
 
-      <q-input ref="zanrRef" v-model="inputzanr" label="Žanr" placeholder="Unesite žanr">
-      </q-input>
+              <q-input ref="zanrRef" v-model="inputzanr" label="Žanr" placeholder="Unesite žanr">
+              </q-input>
 
-      <q-input ref="gradRef" v-model="inputgrad" label="Grad" placeholder="Unesite grad">
-      </q-input>
+              <q-input ref="gradRef" v-model="inputgrad" label="Grad" placeholder="Unesite grad">
+              </q-input>
 
-      <q-input ref="brojRef" v-model="inputbroj" label="Broj mobitela" placeholder="Unesite broj mobitela">
-      </q-input>
+              <q-input ref="brojRef" v-model="inputbroj" label="Broj mobitela" placeholder="Unesite broj mobitela">
+              </q-input>
 
-      <q-input ref="emailRef" v-model="inputemail" label="E-mail" placeholder="Unesite E-mail">
-      </q-input>
+              <q-input ref="emailRef" v-model="inputemail" label="E-mail" placeholder="Unesite E-mail">
+              </q-input>
 
-      <div>
-      <input type="file" @change="onFileChange" />
+              <div>
+                <input type="file" @change="onFileChange" />
 
 
-      <div v-if="base64Image">
-        <img :src="base64Image" />
-        <q-separator></q-separator>
+                <div v-if="base64Image">
+                  <img :src="base64Image" />
+                  <q-separator></q-separator>
 
-        <div
-          class="q-pa-sm"
-          style="max-width: 500px; overflow-wrap: break-word"
-        ></div>
-      </div>
-    </div>
-  </div>
-        <!-- <div
+                  <div class="q-pa-sm" style="max-width: 500px; overflow-wrap: break-word"></div>
+                </div>
+              </div>
+            </div>
+            <!-- <div
           class="q-pa-sm"
           style="max-width: 600px; overflow-wrap: break-word"
         ></div> -->
 
-    </div>
+          </div>
 
           <div class="row justify-center q-mt-md">
-          <q-btn
-          style="background-color: red; color: white"
-          label="Unesite osobne podatke"
-          @click="submitForm"
-          class="center"
-        />
-      </div>
+            <q-btn style="background-color: red; color: white" label="Unesite osobne podatke" @click="submitForm"
+              class="center" />
+          </div>
 
 
-<q-dialog v-model="showDialog">
-      <q-card>
-        <q-card-section> Novi DJ je uspješno je unesen! </q-card-section>
-        <q-card-actions align="right">
-          <q-btn
-            flat
-            label="Ok"
-            color="red"
-            v-close-popup
-            @click="closeAndReload"
-          />
-        </q-card-actions>
+          <q-dialog v-model="showDialog">
+            <q-card>
+              <q-card-section> Novi DJ uspješno je unesen! </q-card-section>
+              <q-card-actions align="right">
+                <q-btn flat label="Ok" color="red" v-close-popup @click="closeAndReload" />
+              </q-card-actions>
+            </q-card>
+          </q-dialog>
+        </q-card-section>
       </q-card>
-    </q-dialog>
-</q-card-section>
-  </q-card>
-</q-page>
-</div>
+    </q-page>
+  </div>
 </template>
 
 <script>
@@ -88,7 +76,7 @@ import imageCompression from "browser-image-compression";
 import { ref } from 'vue'
 import axios from 'axios' // Import axios
 export default {
-  data () {
+  data() {
     return {
       inputDJime: '',
       inputime: '',
@@ -152,12 +140,13 @@ export default {
       window.location.reload();
     },
 
-    onFileSelected (event){
-      this.inputSlika = event.target.files[0] },
-      onUpload () {
-        axios.post
-      },
-    resetForm () {
+    onFileSelected(event) {
+      this.inputSlika = event.target.files[0]
+    },
+    onUpload() {
+      axios.post
+    },
+    resetForm() {
       this.inputDJime = ''
       this.inputime = ''
       this.inputprezime = ''
@@ -175,7 +164,7 @@ export default {
       this.$refs.brojRef.resetValidation()
       this.$refs.emailRef.resetValidation()
     },
-    async submitForm () {
+    async submitForm() {
       const sampleData = {
         DJime: this.inputDJime,
         ime: this.inputime,
@@ -205,11 +194,12 @@ export default {
 </script>
 
 <style>
-  .bg-image {
-    background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg) ;
+.bg-image {
+  background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
 
-  }
-  .bold-separator {
-    border-top: 2px solid black;
-  }
+}
+
+.bold-separator {
+  border-top: 2px solid black;
+}
 </style>

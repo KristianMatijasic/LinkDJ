@@ -139,7 +139,7 @@ app.delete('/obrisi_DJ/:id', function (request, response){
   
       console.log('Deletion result: ${JSON.stringify(results)}'); // Log the result of the deletion
   
-      return response.send({ error: false, data: results, message: 'DJ je obrisan obrisi DJ.' });
+      return response.send({ error: false, data: results, message: 'DJ je obrisan.' });
     });
   });
 
@@ -147,7 +147,7 @@ app.delete('/obrisi_DJ/:id', function (request, response){
     let ID_DJ = request.params.id;
     console.log(`Received request to delete DJ with id: ${ID_DJ}`); // Log the received id
     if (!ID_DJ) {
-      return response.status(400).send({ error: true, message: 'nedostaje id DJ' });
+      return response.status(400).send({ error: true, message: 'nedostaje id.' });
     }
    const deleteQuery = "UPDATE DJ SET slika = NULL WHERE ID_DJ = ?";
      //const deleteQuery = "DELETE  FROM atrakcije WHERE id_atrakcije = '${id}'";
