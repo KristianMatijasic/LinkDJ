@@ -2,13 +2,13 @@
   <div style="background-color: #8CDEED;">
 
   <h3>Unos komentara</h3>
-  <h6>U polje ispod upišite svoj komentar o atrakciji</h6>
+  <h6>U polje ispod upišite svoj komentar</h6>
   <q-form class="text">
 
       <q-input filled v-model="komentar" label="Unesi svoj komentar.. " :dense="dense" />
     </q-form>
 
-    
+
     <q-card-section>
             <q-btn label="Dodaj komentar" @click="dodajKomentar(komentar, trenutniID)" />
         </q-card-section>
@@ -17,7 +17,7 @@
   <q-card-section>
       <q-btn color="#4CAF50" @click="$router.push('/')" label="Natrag na početnu" />
     </q-card-section>
-    
+
 
   </div>
 </template>
@@ -33,8 +33,6 @@ const route = useRoute()
 const router = useRouter()
 const trenutniID = route.params.id
 
-
-//Dodavanje komentara za atrakciju
 
 const dodajKomentar = async (komentar, trenutniID) => {
     try {
@@ -63,8 +61,8 @@ const dodajKomentar = async (komentar, trenutniID) => {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: rgb(228, 233, 234);
-  
-  
+
+
 }
 
 button {
@@ -74,7 +72,7 @@ button {
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
-  
+
 }
 
 button:hover {

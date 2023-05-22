@@ -14,10 +14,10 @@
 
     <q-drawer v-model="leftDrawerOpen" style="background-color: red">
       <q-list style="color: black; background-color: red">
-        <q-item-label class="text-bold" header style="color: black">
+        <q-item-label class="text-bold" header style="color: black; font-size: 20px; text-align: center;">
           IZBORNIK
         </q-item-label>
-        <q-separator color="black" />
+        <q-separator color="black"/>
         <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
@@ -42,9 +42,9 @@ const linksList = [
   },
   {
     title: "Pregled profila",
-    caption: "Pregledaj svoje osobne podatke",
-    icon: "DJ",
-    link: "/",
+    caption: "Pogledaj svoj profil",
+    icon: "headset",
+    link: "",
     target: "_self",
   },
   {
@@ -57,7 +57,7 @@ const linksList = [
   {
     title: "Novi DJ...",
     caption: "Unesi osobne podatke DJ-a",
-    icon: "input",
+    icon: "DJ",
     link: "unos",
     target: "_self",
   },
@@ -65,31 +65,23 @@ const linksList = [
     title: "Pregled rezervacija",
     caption: "Pregledaj DJ-ove rezerirane termine",
     icon: "today",
-    link: "unos",
+    link: "pregled_rez",
     target: "_self",
   },
   {
     title: "Rezerviraj DJ-a",
     caption: "Rezerviraj termin kod željenog DJ-a",
     icon: "bookmark",
-    link: "unos",
+    link: "unos_rez",
     target: "_self",
   },
-  // {
-  //   title: "Rasprava",
-  //   caption: "Diskutiraj s ostalim Dj-evima",
-  //   icon: "chat",
-  //   link: "unos",
-  //   target: "_self",
-  // },
-
-  /*{
-    title: "Testiranje Axiosa",
-    caption: "služi za testiranje Axiosa",
-    icon: "swap_horizontal_circle",
-    link: "axo",
+  {
+    title: "Odjava iz sustava",
+    caption: "Odjavi se...",
+    icon: "logout",
+    link: "auth",
     target: "_self",
-  },*/
+  },
 ];
 
 export default defineComponent({

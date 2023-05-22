@@ -4,8 +4,10 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [
       { path: "", component: () => import("pages/IndexPage.vue") },
-      { path: "unos", component: () => import("pages/Unos_atrakcija.vue") },
-      { path: "axo", component: () => import("pages/AxiosPageTest.vue") },
+      { path: "unos", component: () => import("pages/UnosDjPage.vue") },
+      { path: "unos_rez", component: () => import("pages/RezervirajPage.vue") },
+      { path: "auth", component: () => import("pages/LoginPage.vue") },
+      { path: "pregled_rez", component: () => import("pages/PregledRezervacijaPage.vue") },
     ],
   },
 
@@ -15,26 +17,22 @@ const routes = [
     children: [{ path: "", component: () => import("pages/LoginPage.vue") }],
   },
 
+
   {
-    path: "/",
-    component: () => import("layouts/BlankLayout.vue"),
-    children: [
-      { path: "axo", component: () => import("pages/AxiosPageTest.vue") },
-      { path: "auth", component: () => import("pages/LoginPage.vue") },
-    ],
-  },
- 
-  {
-    path: "/one_atraction",
+    path: "/one_dj",
     component: () => import("layouts/BlankLayout.vue"),
     children: [
       {
-        name: "one_atraction",
+        name: "one_dj",
         path: ":id",
-        component: () => import("pages/AtrakcijePage.vue"),
+        component: () => import("pages/DjPage.vue"),
       },
     ],
   },
+
+
+
+
   {
     path: "/komentari",
     component: () => import("layouts/BlankLayout.vue"),
@@ -47,30 +45,8 @@ const routes = [
     ],
   },
 
-  {
-    path: "/slika",
-    component: () => import("layouts/BlankLayout.vue"),
-    children: [
-      {
-        name: "slika",
-        path: "",
-        component: () => import("src/pages/dodaj_slika.vue"),
-      },
-    ],
-  },
 
-  /*
-  {
-   path: "/atr",
-    component: () => import("layouts/BlankLayout.vue"),
-    children: [
-      {name: "atr", path: "/atr", component: () => import("pages/AtrakcijePage.vue") },
-    ],
-  },
-*/
 
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: "/:catchAll(.*)*",
     component: () => import("pages/ErrorNotFound.vue"),

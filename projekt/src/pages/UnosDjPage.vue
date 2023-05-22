@@ -41,11 +41,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div
-          class="q-pa-sm"
-          style="max-width: 600px; overflow-wrap: break-word"
-        ></div> -->
-
           </div>
 
           <div class="row justify-center q-mt-md">
@@ -69,12 +64,10 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
 import { QDialog } from 'quasar'
 import imageCompression from "browser-image-compression";
-// eslint-disable-next-line no-unused-vars
 import { ref } from 'vue'
-import axios from 'axios' // Import axios
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -100,8 +93,8 @@ export default {
       }
 
       const options = {
-        maxSizeMB: 1, // Maximum file size in MB
-        maxWidthOrHeight: 1920, // Maximum width or height, whichever is smaller
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
         useWebWorker: true,
       };
 

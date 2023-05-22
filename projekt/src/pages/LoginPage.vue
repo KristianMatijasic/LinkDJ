@@ -1,11 +1,11 @@
 <template>
-  <!-- <q-header elevated class="bg-deep-purple text-white"> -->
+
   <q-page class="bg-image">
     <q-tabs v-model="tab" class="text-white " style="background-color: red;">
       <q-tab class="text-bold" name="Prijava" label="Prijava" @click.prevent="register = false" />
       <q-tab class="text-bold" name="Registracija" label="Registracija" @click.prevent="register = true" />
     </q-tabs>
-    <!-- </q-header> -->
+
 
     <q-card class="my-card absolute-center">
       <q-card-section>
@@ -32,13 +32,7 @@
 
 <script setup>
 import { ref, reactive } from "vue"
-//import { useStoreAuth } from "src/stores/storeAuth"
 
-
-/*
-store
-*/
-//const storeAuth = useStoreAuth()
 
 
 const register = ref(false)
@@ -53,18 +47,13 @@ else {
   tab.value = "Registracija"
 }
 
-/*
-credentials
-*/
 
 const credentials = reactive({
   email: '',
   password: ''
 })
 
-/*
-  submit
-*/
+
 
 const onSubmit = () => {
   console.log("forma potvrđana")
@@ -104,11 +93,5 @@ const onSubmit = () => {
 
 }
 </style>
-
-<!-- .loginText
-text-align: center
-font-size: 36px
-
-.input,  -->
 
 

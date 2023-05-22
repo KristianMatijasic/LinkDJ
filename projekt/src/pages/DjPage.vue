@@ -6,13 +6,14 @@
 
         <q-img :src=post.Slika width="500px" height="600px" position="absolute" top="50%" left="50%"
           transform="translate(-50%, -50%)">
-          <div class="q-pa-md">
+
+
+   <!--  <div class="q-pa-md">
             <q-btn-dropdown color="black" label="Uredi sliku">
               <q-list>
 
                 <q-item-section>
                   <q-form @click="spremiSliku(name, post.ID_DJ)" class="q-gutter-md">
-                    <!-- <q-input class="bg-light-blue-11" filled v-model="name" label="Zalijepi link nove slike" /> -->
                     <div>
                       <input type="file" @change="onFileChange" />
 
@@ -37,7 +38,8 @@
                 </q-item>
               </q-list>
             </q-btn-dropdown>
-          </div>
+          </div>-->
+
           <div class="absolute-bottom text-subtitle1 text-center">
             <div style="text-transform:uppercase; font-size:50px;">{{ post.DJime }}</div>
           </div>
@@ -60,7 +62,6 @@
           <div class="text-bold" style="font-size: 25px;">{{ post.grad }}</div>
           <!-- <q-btn round color="black" icon="delete" style="right: -12px" @click="deleteOcjena(post.id_atrakcije)" /> -->
           <q-separator color="black" class="bold-separator" />
-          <!-- <div class="" style="max-width: 400px"></div> -->
           <div class="" style="font-size: 20px;">Broj mobitela:</div>
           <div class="text-bold" style="font-size: 25px;">{{ post.broj }}</div>
           <q-separator color="black" class="bold-separator" />
@@ -73,16 +74,14 @@
 
     <div>
       <q-card-section class="q-gutter-lg">
-        <q-btn style="background-color: red; color: white" :to="'/komentari/' + trenutniID" label="Rezervacije" />
-        <q-btn style="background-color: red; color: white" :to="'/komentari/' + trenutniID" label="Rezerviraj DJ-a" />
         <q-btn style="background-color: red; color: white" :to="'/komentari/' + trenutniID" label="Pjesme" />
         <q-btn style="background-color: red; color: white" :to="'/komentari/' + trenutniID" label="Dodaj pjesmu" />
       </q-card-section>
     </div>
-    <q-card-section>
+    <q-card-section class="q-gutter-lg">
       <q-btn style="background-color: red; color: white;" @click="$router.push('/')" label="Natrag na pregled DJ-eva" />
+      <!-- <q-btn icon="delete" class="absolute"  style="background-color: red; color: white;" @click="deleteById(post.ID_DJ)" /> -->
     </q-card-section>
-
   </q-page>
 </template>
 
@@ -105,7 +104,7 @@ const getPosts = async () => {
     posts.value = response.data
 
     console.log("ID je: ", trenutniID)
-    console.log("Podatak iz baze po ID: ", posts.value)
+    console.log("Podatak iz baze po ID-u: ", posts.value)
 
   } catch (error) {
     console.log(error)
@@ -113,41 +112,15 @@ const getPosts = async () => {
 }
 
 
-//Dodavanje slike
 
-
-// const spremiSliku = async (link, id) => {
-//   console.log("OnSubmit: ", link, id)
-
-//   try {
-
-//     const response = await api.put(`http://localhost:4200/dodajSliku/${id}`, {
-//       slika: link
-//     });
-//     console.log(response.data);
-
-
-//   }
-//   catch (error) {
-//     console.log(error);
-//   }
-//   getPosts();
-
-
-
-// }
-
-
-const obrisi_sliku = async (id) => {
-  try {
-    //const response = await api.delete('DJ/${id}');
-    const response = await api.delete(`http://localhost:4200/obrisi_sliku_atrakcije/${id}`);
-    console.log("LOG1: ", response.data);
-    // Perform any additional actions after successful deletion
-  } catch (error) {
-    console.log("LOG2: ", error);
-  }
-  getPosts();
+const deleteById = async (id) => {
+try {
+  const response = await api.delete(`http://localhost:4200/obrisi_DJ/${id}`);
+  console.log(response.data);
+} catch (error) {
+  console.log(error);
+}
+getPosts();
 }
 
 
@@ -159,19 +132,19 @@ onMounted(() => {
 
 <style scoped></style>
 
+
 <style lang="sass" scoped>
 .my-card
   width: 100%
   max-width: 800px
-
 </style>
+
 
 <style>
 .post-text {
   max-width: 620px;
   word-wrap: break-word;
 }
-
 .bold-separator {
   border-top: 2px solid black;
 }
