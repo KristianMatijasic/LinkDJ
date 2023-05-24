@@ -171,7 +171,7 @@ export default {
       }
       try {
         const response = await axios.post(
-          'http://localhost:4200/unosDJ',
+          'http://localhost:4200/DJ',
           sampleData
         )
         console.log(response.data)

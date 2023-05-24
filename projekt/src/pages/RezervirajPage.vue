@@ -8,7 +8,7 @@
               <div class="text-h5 text-weight-bold text-center text-red;" style="color:red; height: 45px;">Rezerviraj termin kod DJ-a</div>
               <q-separator color="black" class="bold-separator" />
 
-              <q-input ref="ime_rezRef" v-model="inputime_rez" label="Ime" placeholder="Unesite ime ">
+              <q-input ref="ime_rezRef" v-model="inputime_rez" label="Ime" placeholder="Unesite ime">
               </q-input>
 
               <q-input ref="prez_rezRef" v-model="inputprez_rez" label="Prezime" placeholder="Unesite prezime">
@@ -22,6 +22,7 @@
 
               <q-input ref="datumRef" v-model="inputdatum" label="Datum" placeholder="Unesite datum kada želite rezervirati DJ-a">
               </q-input>
+
             </div>
           </div>
 

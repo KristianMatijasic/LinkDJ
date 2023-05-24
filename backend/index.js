@@ -39,31 +39,6 @@ app.get('/DJ', (req,res)=>{
     });
 });
 
-// // uzimanje podataka o komentarima
-// app.get("/Komentar", function (request, response) {
-//     dbConn.query("SELECT * FROM Komentar", function (error, results, fields) {
-//         if (error) throw error;
-//         return response.send({
-//             error: false,
-//             data: results,
-//             message: "lista komentara.",
-//         });
-//     });
-// });
-
-// //uzimanje podataka o korisnicima
-// app.get("/Korisnik", function (request, response) {
-//     dbConn.query("SELECT * FROM Korisnik", function (error, results, fields) {
-//         if (error) throw error;
-//         return response.send({
-//             error: false,
-//             data: results,
-//             message: "lista korisnika.",
-//         });
-//     });
-// });
-
-
 
 app.get('/DJ/:id', function (request, response) {
     let ID_DJ = request.params.id;
@@ -86,7 +61,7 @@ app.get('/DJ/:id', function (request, response) {
 
 
 // unos DJ-a
-  app.post('/unosDJ', function (request, response) {
+  app.post('/DJ', function (request, response) {
     const data = request.body;
     DJ = [[data.DJime, data.ime, data.prezime, data.zanr, data.grad, data.broj, data.email, data.Slika]]
     
@@ -177,6 +152,56 @@ app.get('/pregled_rez/:id', function (request, response) {
       });
   });
 });
+app.get('/pregled_rez', (req,res)=>{
+  dbConn.query("select * from Rezervacija", (err,result)=>{
+      if(err){
+          res.send('error');
+      }else{
+          res.send(result);
+      }
+  });
+});
+
+
+
+
+// uzimanje podataka o pjesmama
+app.get("/pjesme", function (request, response) {
+  dbConn.query("SELECT * FROM Pjesma", function (error, results, fields) {
+      if (error) throw error;
+      return response.send({
+          error: false,
+          data: results,
+          message: "lista pjesama.",
+      });
+  });
+});
+
+//prikaz pjesme
+app.get('/pjesme/:id', function (request, response) {
+let ID_DJ = request.params.id;
+dbConn.query("SELECT * FROM Pjesma WHERE VK_ID_DJ=?", ID_DJ, function (error, results, fields) {
+    if (error) throw error;
+    return response.send({
+        error: false,
+        data: results,
+        message: "lista pjesama.",
+    });
+});
+});
+
+//unos pjesme za DJ-a po ID-u
+app.post('/unos_pjes/:id', (req, res) => {
+  const data = [req.body.naziv_pjesma, req.body.link_pjesma, req.params.id]
+  dbConn.query("INSERT INTO Pjesma (naziv_pjesma, link_pjesma, VK_ID_DJ) VALUES (?,?,?)", data,(err,result)=>{
+    if(err){
+      res.send('Error')
+    }else{
+      res.send(result)
+    }
+  })
+});
+
 
 
 

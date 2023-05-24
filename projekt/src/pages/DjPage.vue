@@ -1,44 +1,11 @@
 <template>
-  <q-page class="bg-black">
+  <q-page class="bg-image">
     <div v-for="post in posts" :key="post.id" class="row q-pa-md">
 
       <div q-card>
 
         <q-img :src=post.Slika width="500px" height="600px" position="absolute" top="50%" left="50%"
           transform="translate(-50%, -50%)">
-
-
-   <!--  <div class="q-pa-md">
-            <q-btn-dropdown color="black" label="Uredi sliku">
-              <q-list>
-
-                <q-item-section>
-                  <q-form @click="spremiSliku(name, post.ID_DJ)" class="q-gutter-md">
-                    <div>
-                      <input type="file" @change="onFileChange" />
-
-
-                      <div v-if="base64Image">
-                        <img :src="base64Image" />
-                        <q-separator></q-separator>
-                      </div>
-                    </div>
-                    <div style="display: flex; justify-content: center; align-items: center;">
-                      <q-btn class="" label="Spremi sliku" type="submit" color="red" />
-                    </div>
-                  </q-form>
-                </q-item-section>
-
-
-                <q-item class="text-bold" clickable v-close-popup @click="obrisi_sliku(post.ID_DJ)">
-                  <q-item-section>
-                    <q-item-label style="display: flex; justify-content: center; align-items: center;">OBRIŠI
-                      SLIKU</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-btn-dropdown>
-          </div>-->
 
           <div class="absolute-bottom text-subtitle1 text-center">
             <div style="text-transform:uppercase; font-size:50px;">{{ post.DJime }}</div>
@@ -74,14 +41,43 @@
 
     <div>
       <q-card-section class="q-gutter-lg">
-        <q-btn style="background-color: red; color: white" :to="'/komentari/' + trenutniID" label="Pjesme" />
-        <q-btn style="background-color: red; color: white" :to="'/komentari/' + trenutniID" label="Dodaj pjesmu" />
+        <q-btn  style="background-color: red; color: white;" class="button" @click="$router.push('/dodaj_pjesmu/'+trenutniID)" label="Dodaj pjesmu" />
+        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/')" label="Natrag na pregled DJ-eva" />
+         <!-- <q-btn icon="delete" class="absolute"  style="background-color: red; color: white;" @click="deleteById(post.ID_DJ)" /> -->
       </q-card-section>
     </div>
-    <q-card-section class="q-gutter-lg">
-      <q-btn style="background-color: red; color: white;" @click="$router.push('/')" label="Natrag na pregled DJ-eva" />
-      <!-- <q-btn icon="delete" class="absolute"  style="background-color: red; color: white;" @click="deleteById(post.ID_DJ)" /> -->
+
+
+    <q-separator color="black" class="bold-separator" />
+
+
+<div class="q-pa-md row items-start q-gutter-xs">
+  <p style="font-size: 25px; color: white"><b>Pjesme:</b></p>
+
+</div>
+
+<div class="q-pa-md row items-start q-gutter-md">
+  <q-card v-for="item in comments" :key="item" class="my-card" flat bordered>
+    <q-item>
+      <q-item-section avatar>
+        <q-avatar>
+          <q-icon name="headphones"></q-icon>
+        </q-avatar>
+      </q-item-section>
+      <q-card-section>
+        <b>{{item.naziv_pjesma}}</b>
+      </q-card-section>
+    </q-item>
+    <q-separator />
+    <q-card-section horizontal>
+      <q-card-section>
+        <a :href="item.link_pjesma" target="_blank">{{item.link_pjesma}}</a>
+      </q-card-section>
     </q-card-section>
+  </q-card>
+</div>
+
+
   </q-page>
 </template>
 
@@ -94,6 +90,7 @@ import { api } from 'boot/axios'
 import { useRoute, useRouter } from 'vue-router';
 
 const posts = ref([])
+const comments = ref([])
 const route = useRoute()
 const router = useRouter()
 
@@ -102,7 +99,9 @@ const getPosts = async () => {
   try {
     const response = await api.get(`/DJ/${trenutniID}`)
     posts.value = response.data
-
+    const pjesme = await api.get(`/pjesme/${trenutniID}`)
+    comments.value = pjesme.data.data
+    console.log(pjesme.data)
     console.log("ID je: ", trenutniID)
     console.log("Podatak iz baze po ID-u: ", posts.value)
 
@@ -122,8 +121,6 @@ try {
 }
 getPosts();
 }
-
-
 onMounted(() => {
   getPosts()
 })
@@ -148,4 +145,10 @@ onMounted(() => {
 .bold-separator {
   border-top: 2px solid black;
 }
+
+.bg-image {
+  background-image: url(https://images.alphacoders.com/237/237133.jpg);
+
+}
+
 </style>

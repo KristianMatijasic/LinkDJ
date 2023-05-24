@@ -100,6 +100,11 @@ const searchQuery = ref('')
   max-width: 300px;
 }
 
+.bg-image {
+  background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
+
+}
+
 /* .bordered-element {
   border: 1px solid #000;
   padding: 10px;

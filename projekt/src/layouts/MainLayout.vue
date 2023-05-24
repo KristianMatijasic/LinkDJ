@@ -8,7 +8,7 @@
           <div class="text-h6"><b>LinkDJ - sustav za rezervaciju DJ-a</b></div>
         </q-toolbar-title>
 
-        <div class="text-bold">OG developeri: Kiki i Marko</div>
+
       </q-toolbar>
     </q-header>
 
@@ -37,14 +37,14 @@ const linksList = [
     title: "Prijava u sustav",
     caption: "Korisničko ime i lozinka DJ-a",
     icon: "login",
-    link: "auth",
+    link: "/auth",
     target: "_self",
   },
   {
     title: "Pregled profila",
     caption: "Pogledaj svoj profil",
     icon: "headset",
-    link: "",
+    link: "/",
     target: "_self",
   },
   {
@@ -73,6 +73,13 @@ const linksList = [
     caption: "Rezerviraj termin kod željenog DJ-a",
     icon: "bookmark",
     link: "unos_rez",
+    target: "_self",
+  },
+  {
+    title: "O aplikaciji Link.DJ",
+    caption: "Pročitaj informacije o apliakciji",
+    icon: "info",
+    link: "info_stranica",
     target: "_self",
   },
   {
