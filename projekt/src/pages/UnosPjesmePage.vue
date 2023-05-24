@@ -2,7 +2,7 @@
  <q-page class="bg-image">
 
 
-  <div class="flex-center row items-start q-gutter" style="background-color: red;">
+  <div class="q-pa-sm flex-center row items-start q-gutter" style="background-color: red;">
    <p style="font-size: 35px; color: white"><b>Unos pjesme:</b></p>
   </div>
 
@@ -16,7 +16,7 @@
       <q-input class="textarea" v-model="link" label="Link pjesme " placeholder="Unesite link pjesme" :dense="dense" />
   </div>
 
-          <!-- Poruka nakon klika na dodaj pjesmu -->
+    <!-- Poruka nakon klika na dodaj pjesmu -->
   <p class="q-pa-md" style=" font-size: 30px; color:white; display: flex; justify-content: center; align-items: center;"><b>{{ message }}</b></p>
     <q-card-section class="q-gutter-xl flex-center row items-start">
             <q-btn style="background-color: red; color: white" label="Dodaj pjesmu" @click="unos_pjes(pjesma, link, trenutniID)" />

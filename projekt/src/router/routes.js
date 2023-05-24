@@ -27,7 +27,6 @@ const routes = [
     ],
   },
 
-
   {
     path: "/dodaj_pjesmu",
     component: () => import("layouts/BlankLayout.vue"),

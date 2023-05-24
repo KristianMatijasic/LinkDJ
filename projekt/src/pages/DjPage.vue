@@ -36,12 +36,14 @@
           <div class="text-bold" style="font-size: 25px;">{{ post.email }}</div>
         </div>
       </div>
+      <div>
+    </div>
     </div>
 
 
     <div>
       <q-card-section class="q-gutter-lg">
-        <q-btn  style="background-color: red; color: white;" class="button" @click="$router.push('/dodaj_pjesmu/'+trenutniID)" label="Dodaj pjesmu" />
+        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/dodaj_pjesmu/'+trenutniID)" label="Dodaj pjesmu" />
         <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/')" label="Natrag na pregled DJ-eva" />
          <!-- <q-btn icon="delete" class="absolute"  style="background-color: red; color: white;" @click="deleteById(post.ID_DJ)" /> -->
       </q-card-section>
@@ -50,9 +52,8 @@
 
     <q-separator color="black" class="bold-separator" />
 
-
 <div class="q-pa-md row items-start q-gutter-xs">
-  <p style="font-size: 25px; color: white"><b>Pjesme:</b></p>
+  <p style="font-size: 25px; color: white"><b>PJESME:</b></p>
 
 </div>
 
@@ -133,7 +134,8 @@ onMounted(() => {
 <style lang="sass" scoped>
 .my-card
   width: 100%
-  max-width: 800px
+  max-width: 735px
+  class: flex-center
 </style>
 
 
