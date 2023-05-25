@@ -13,9 +13,9 @@
           <div class="q-gutter-md full-with" style="max-width: 500px">
             <div class="loginText text-bold text-red" style="text-align: center">{{ tab }}</div>
 
-            <q-input v-model="credentials.email" class="input" outlined label="Email" />
+            <q-input v-model="credentials.user" class="input" outlined label="Email" />
             <div> </div>
-            <q-input v-model="credentials.password" class="input" outlined type="password" label="Lozinka" />
+            <q-input v-model="credentials.pas" class="input" outlined type="password" label="Lozinka" />
 
 
             <div class="row justify-between">
@@ -24,21 +24,19 @@
             </div>
           </div>
 
+
         </form>
       </q-card-section>
     </q-card>
   </q-page>
 </template>
 
+
+
 <script setup>
 import { ref, reactive } from "vue"
-
-
-
 const register = ref(false)
 const tab = ref('')
-
-
 
 if (!register.value) {
   tab.value = "Prijava"
@@ -47,13 +45,10 @@ else {
   tab.value = "Registracija"
 }
 
-
 const credentials = reactive({
   email: '',
   password: ''
 })
-
-
 
 const onSubmit = () => {
   console.log("forma potvrđana")
@@ -72,8 +67,9 @@ const onSubmit = () => {
 
 
 }
-
 </script>
+
+
 
 <style lang="sass" scoped>
 .my-card
@@ -83,14 +79,10 @@ const onSubmit = () => {
     margin-top: 40px
     font-size: 36px
     width: 100%
-
-
 </style>
-
 <style>
 .bg-image {
   background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
-
 }
 </style>
 

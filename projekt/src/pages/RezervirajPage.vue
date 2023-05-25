@@ -1,120 +1,112 @@
 <template>
-  <div class="bg-image">
-    <q-page padding class="flex flex-center">
-      <q-card style="width: 350px;">
-        <q-card-section>
-          <div class="q-gutter-md full-with; flex-center;" style="max-width: 400px;">
-            <div class="" style="max-width: 350px; max-height: 520px;">
-              <div class="text-h5 text-weight-bold text-center text-red;" style="color:red; height: 45px;">Rezerviraj termin kod DJ-a</div>
-              <q-separator color="black" class="bold-separator" />
-
-              <q-input ref="ime_rezRef" v-model="inputime_rez" label="Ime" placeholder="Unesite ime">
-              </q-input>
-
-              <q-input ref="prez_rezRef" v-model="inputprez_rez" label="Prezime" placeholder="Unesite prezime">
-              </q-input>
-
-              <q-input ref="broj_rezRef" v-model="inputbroj_rez" label="Broj mobitela" placeholder="Unesite broj mobitela">
-              </q-input>
-
-              <q-input ref="mail_rezRef" v-model="inputmail_rez" label="E-mail" placeholder="Unesite E-mail">
-              </q-input>
-
-              <q-input ref="datumRef" v-model="inputdatum" label="Datum" placeholder="Unesite datum kada želite rezervirati DJ-a">
-              </q-input>
-
-            </div>
-          </div>
-
-          <div class="row justify-center q-mt-md">
-            <q-btn style="background-color: red; color: white" label="Rezerviraj" @click="submitForm"
-              class="center" />
-          </div>
+  <q-page class="bg-image">
 
 
-          <q-dialog v-model="showDialog">
-            <q-card>
-              <q-card-section> Rezervacija uspješno unesena! </q-card-section>
-              <q-card-actions align="right">
-                <q-btn flat label="Ok" color="red" v-close-popup @click="closeAndReload" />
-              </q-card-actions>
-            </q-card>
-          </q-dialog>
-        </q-card-section>
-      </q-card>
-    </q-page>
-  </div>
-</template>
+   <div class="q-pa-sm flex-center row items-start q-gutter" style="background-color: red;">
+    <p style="font-size: 35px; color: white"><b>Unos rezervacije:</b></p>
+   </div>
 
-<script>
-import { QDialog } from 'quasar'
-import imageCompression from "browser-image-compression";
-import { ref } from 'vue'
-import axios from 'axios'
-export default {
-  data() {
-    return {
-      inputime_rez: '',
-      inputprez_rez: '',
-      inputbroj_rez: '',
-      inputmail_rez: '',
-      inputdatum: '',
-    }
-  },
-  methods: {
-    closeAndReload() {
-      this.showDialog = false;
-      window.location.reload();
-    },
+ <h3> </h3>
 
-    onUpload() {
-      axios.post
-    },
+   <div class=" flex-center row items-start">
+       <q-input class="textarea" v-model="ime" label="Ime " placeholder="Unesite vaše ime" :dense="dense" />
+   </div>
 
-    resetForm() {
-      this.inputime_rez = ''
-      this.inputprez_rez = ''
-      this.inputbroj_rez = ''
-      this.inputmail_rez = ''
-      this.inputdatum = ''
-      this.$refs.ime_rezRef.resetValidation()
-      this.$refs.prez_rezRef.resetValidation()
-      this.$refs.broj_rezRef.resetValidation()
-      this.$refs.mail_rezRef.resetValidation()
-      this.$refs.datumRef.resetValidation()
-    },
-    async submitForm() {
-      const sampleData = {
-        ime_rez: this.inputime_rez,
-        prez_rez: this.inputprez_rez,
-        broj_rez: this.inputbroj_rez,
-        mail_rez: this.inputmail_rez,
-        datum: this.inputdatum,
-      }
-      try {
-        const response = await axios.post(
-          'http://localhost:4200/unos_rez',
-          sampleData
-        )
-        console.log(response.data)
-        this.showDialog = true
-        this.resetForm()
-      } catch (error) {
-        console.error(error)
-      }
-    }
-  },
-}
+   <div class="flex-center row items-start">
+       <q-input class="textarea" v-model="prezime" label="Prezime " placeholder="Unesite vaše prezime" :dense="dense" />
+   </div>
+   <div class=" flex-center row items-start">
+       <q-input class="textarea" v-model="broj" label="Broj mobitela " placeholder="Unesite vaš broj mobitela" :dense="dense" />
+   </div>
 
-</script>
+   <div class="flex-center row items-start">
+       <q-input class="textarea" v-model="email" label="E-mail " placeholder="Unesite vaš E-mail" :dense="dense" />
+   </div>
+   <div class=" flex-center row items-start">
+       <q-input class="textarea" v-model="datumm" label="Datum rezervacije " placeholder="Unesite datum kada želite rezervirati DJ-a" :dense="dense" />
+   </div>
 
-<style>
-.bg-image {
-  background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
 
-}
+     <!-- Poruka nakon klika na rezerviraj -->
+   <p class="q-pa-md" style=" font-size: 30px; color:white; display: flex; justify-content: center; align-items: center;"><b>{{ message }}</b></p>
+     <q-card-section class="q-gutter-xl flex-center row items-start">
+             <q-btn style="background-color: red; color: white" label="Rezerviraj" @click="unos_rez(ime, prezime, broj, email, datumm, trenutniID)" />
+             <q-btn style="background-color: red; color: white"  @click="$router.push('/one_dj/'+trenutniID)" label="Natrag na DJ-a" />
+         </q-card-section>
 
-.bold-separator {
-  border-top: 2px solid black;
-}
-</style>
+
+     </q-page>
+ </template>
+
+ <script setup>
+ import { ref, onMounted } from "vue"
+ import { api } from 'boot/axios'
+ import { useRoute, useRouter } from 'vue-router';
+
+
+ const posts = ref([])
+ const route = useRoute()
+ const router = useRouter()
+ const trenutniID = route.params.id
+ const message = ref('');
+ const ime = ref('');
+ const prezime = ref('');
+ const broj = ref('');
+ const email = ref('');
+ const datumm = ref('');
+
+ //Dodavanje rezervacije DJ-a
+ const unos_rez = async (ime, prezime, broj, email, datumm, trenutniID) => {
+     try {
+         console.log('ime_rez: ', ime)
+         console.log('prez_rez: ', prezime)
+         console.log('broj_rez: ', broj)
+         console.log('mail_rez: ', email)
+         console.log('datum: ', datumm)
+         console.log("ID: ", trenutniID)
+
+         const response = await api.post(`http://localhost:4200/unos_rez/${trenutniID}`, {
+             ime_rez: ime,
+             prez_rez: prezime,
+             broj_rez: broj,
+             mail_rez: email,
+             datum: datumm
+         });
+         console.log(response.data);
+
+         message.value = 'Nova rezervacija uspješno je dodana!';
+     }
+     catch (error) {
+         console.log(error);
+     }
+ }
+ </script>
+
+
+
+
+ <style scoped>
+ .textarea {
+   width: 50%;
+   height: 100px;
+   padding-top: 22px;
+   padding-bottom: 20px;
+   padding-left: 20px;
+   padding-right: 20px;
+   background-color: white;
+ }
+
+
+
+ .bg-image {
+   background-image: url(https://images.alphacoders.com/237/237133.jpg);
+
+ }
+ button {
+   border: 1px solid rgb(40, 40, 40);
+
+   padding: 10px 20px;
+
+ }
+
+ </style>

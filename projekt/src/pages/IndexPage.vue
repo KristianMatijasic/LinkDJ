@@ -13,9 +13,6 @@
           <q-btn fab color="grey" icon="DJ" class="absolute" style="top: 0; left: 12px; transform: translateY(-50%)"
             :to="'/one_dj/' + post.ID_DJ" />
 
-          <!-- <q-btn fab color="green" icon="delete" class="absolute"  style="top: 0px; right: 12px; transform: translateY(-50%)"
-           @click="deleteById(post.ID_DJ)" /> -->
-
           <div class="myDiv" style="padding: 10px;"></div>
 
           <div class="row no-wrap items-center">
@@ -55,19 +52,15 @@ const getPosts = async () => {
 }
 
 
-const deleteById = async (id) => {
-
-
-  try {
-    //const response = await api.delete('atrakcije/${id}');
-    const response = await api.delete(`http://localhost:4200/obrisi_DJ/${id}`);
-    console.log(response.data);
-    // Perform any additional actions after successful deletion
-  } catch (error) {
-    console.log(error);
-  }
-  getPosts();
-}
+// const deleteById = async (id) => {
+//   try {
+//     const response = await api.delete(`http://localhost:4200/obrisi_DJ/${id}`);
+//     console.log(response.data);
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   getPosts();
+// }
 
 
 onMounted(() => {
@@ -84,7 +77,7 @@ const goToDJDetalji = (id) => {
 }
 
 
-const searchQuery = ref('')
+// const searchQuery = ref('')
 
 </script>
 

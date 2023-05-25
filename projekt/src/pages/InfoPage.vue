@@ -17,7 +17,6 @@
   <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Rezervacija DJ-a preko kalendara</b></p>
   <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Mogućnost komentiranja pjesama</b></p>
   <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Tražilica DJ-eva na početnoj stranici</b></p>
-  <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Rezervacije DJ-a na stranici pojedinog DJ-a</b></p>
   <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Mogućnost uređivanja slike...</b></p>
 
 </q-page>
