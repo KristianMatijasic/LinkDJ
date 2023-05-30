@@ -34,8 +34,8 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
   {
-    title: "Prijava u sustav",
-    caption: "Korisničko ime i lozinka DJ-a...",
+    title: "Registracija",
+    caption: "Unesi korisničko ime i lozinku...",
     icon: "login",
     link: "/auth",
     target: "_self",

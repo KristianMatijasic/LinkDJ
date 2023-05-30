@@ -246,26 +246,8 @@ app.delete('/obrisi_pjes/:id', function (request, response) {
   });
 });
 
-// Registracija/login korisnika 
-app.post('/korisnik/register',  (req, res) => {
-  const { username, password } = req.body;
-  try {
-    dbConn.query('SELECT * FROM Korisnik WHERE username = ?', [username], (error, result) => {
-    
-    if (result.length > 0) {
-      res.status(409).json({ message: 'Korisničko ime je zauzeto' });
-    } else {
-      dbConn.query('INSERT INTO Korisnik (username, password) VALUES (?, ?)', [username, password]);
-      res.json({ message: 'Uspješna registracija' });
-    }
-  });
-  } catch (err) {
-    console.error('Greška prilikom registracija:', err);
-    res.status(500).json({ message: 'Greška prilikom registracija' });
-  }
-});
-
-app.post('/korisnik/register',  (req, res) => {
+// Registracija korisnika 
+app.post('/registracija',  (req, res) => {
   const { username, password } = req.body;
   try {
     dbConn.query('SELECT * FROM Korisnik WHERE username = ?', [username], (error, result) => {

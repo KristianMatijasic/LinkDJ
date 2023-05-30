@@ -1,82 +1,83 @@
 <template>
-
   <q-page class="bg-image">
-    <q-tabs v-model="tab" class="text-white " style="background-color: red;">
-      <q-tab class="text-bold" name="Prijava" label="Prijava" @click.prevent="register = false" />
-      <q-tab class="text-bold" name="Registracija" label="Registracija" @click.prevent="register = true" />
-    </q-tabs>
 
 
     <q-card class="my-card absolute-center">
+
       <q-card-section>
-        <form @submit.prevent="onSubmit">
-          <div class="q-gutter-md full-with" style="max-width: 500px">
-            <div class="loginText text-bold text-red" style="text-align: center">{{ tab }}</div>
+        <div class="q-gutter-md full-with" style="max-width: 500px">
+        <div class="loginText text-bold text-red" style="text-align: center">Registracija</div>
+    <q-form @submit="login">
 
-            <q-input v-model="credentials.user" class="input" outlined label="Email" />
-            <div> </div>
-            <q-input v-model="credentials.pas" class="input" outlined type="password" label="Lozinka" />
+      <q-input v-model="username" label="Korisničko ime" placeholder="Unesite korisničko ime" outlined dense class="q-mb-md"></q-input>
+      <q-input v-model="password" label="Lozinka" type="password" placeholder="Unesite lozinku" outlined dense class="q-mb-md"></q-input>
 
-
-            <div class="row justify-between">
-              <q-btn style="background-color: red; color: white" to="/">Odustani</q-btn>
-              <q-btn style="background-color: red; color: white" type="submit">{{ tab }}</q-btn>
-            </div>
-          </div>
-
-
-        </form>
-      </q-card-section>
+      <div class="row justify-between">
+      <q-btn type="submit" label="registracija" style="background-color: red; color: white" :disable="isLoading"></q-btn>
+      <q-btn style="background-color: red; color: white" to="/">Odustani</q-btn>
+</div>
+    </q-form>
+</div>
+</q-card-section>
     </q-card>
-  </q-page>
+
+</q-page>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      isLoading: false,
+    };
+  },
+  methods: {
+    async login() {
+      this.isLoading = true;
+      try {
+        const response = await fetch('http://localhost:4200/registracija', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: this.username,
+            password: this.password,
+          }),
+        });
 
-
-<script setup>
-import { ref, reactive } from "vue"
-const register = ref(false)
-const tab = ref('')
-
-if (!register.value) {
-  tab.value = "Prijava"
-}
-else {
-  tab.value = "Registracija"
-}
-
-const credentials = reactive({
-  email: '',
-  password: ''
-})
-
-const onSubmit = () => {
-  console.log("forma potvrđana")
-
-  if (!credentials.email || !credentials.password) {
-    alert('Unesite email i lozinku')
-  }
-  else {
-    if (register.value) {
-      console.log('Registriraj korisnika sa:', credentials)
-    }
-    else {
-      console.log('Prijavi korisnika sa:', credentials)
-    }
-  }
-
-
-}
+        if (response.ok) {
+          this.showAlert('success', 'Registracija uspješna!');
+        } else {
+          this.showAlert('negative', 'Korisničko ime zauzeto, unesite drugo korisničko ime!');
+        }
+      } catch (error) {
+        console.error('An error occurred during login:', error);
+        this.showAlert('negative', 'An error occurred during login');
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    showAlert(color, message) {
+      this.$q.notify({
+        color: color,
+        message: message,
+        position: 'top',
+        timeout: 2000,
+      });
+    },
+  },
+};
 </script>
-
 
 
 <style lang="sass" scoped>
 .my-card
     width: 100%
-    max-width: 400px
+    max-width: 350px
     margin: 0 auto
-    margin-top: 40px
     font-size: 36px
     width: 100%
 </style>
@@ -85,5 +86,3 @@ const onSubmit = () => {
   background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
 }
 </style>
-
-
