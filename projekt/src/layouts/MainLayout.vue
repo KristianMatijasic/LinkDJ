@@ -35,18 +35,18 @@ import EssentialLink from "components/EssentialLink.vue";
 const linksList = [
   {
     title: "Registracija",
-    caption: "Unesi korisničko ime i lozinku...",
-    icon: "login",
+    caption: "Napravi korisnički račun...",
+    icon: "person_add",
     link: "/auth",
     target: "_self",
   },
-  // {
-  //   title: "Pregled profila",
-  //   caption: "Pogledaj svoj profil",
-  //   icon: "headset",
-  //   link: "/",
-  //   target: "_self",
-  // },
+  {
+    title: "Prijava",
+    caption: "Unesi korisničko ime i lozinku...",
+    icon: "login",
+    link: "/login",
+    target: "_self",
+  },
   {
     title: "Pregled DJ-eva",
     caption: "Pregledaj DJ-eve...",
@@ -68,13 +68,6 @@ const linksList = [
     link: "pregled_rez",
     target: "_self",
   },
-  // {
-  //   title: "Rezerviraj DJ-a",
-  //   caption: "Rezerviraj termin kod željenog DJ-a...",
-  //   icon: "bookmark",
-  //   link: "unos_rez",
-  //   target: "_self",
-  // },
   {
     title: "O aplikaciji Link.DJ",
     caption: "Pročitaj informacije o apliakciji...",
@@ -83,8 +76,8 @@ const linksList = [
     target: "_self",
   },
   {
-    title: "Odjava iz sustava",
-    caption: "Odjavi se...",
+    title: "Odjava",
+    caption: "Odjavi se iz sustava...",
     icon: "logout",
     link: "odjava",
     target: "_self",

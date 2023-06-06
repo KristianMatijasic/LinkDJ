@@ -5,17 +5,12 @@ const routes = [
     children: [
       { path: "", component: () => import("pages/IndexPage.vue") },
       { path: "unos", component: () => import("pages/UnosDjPage.vue") },
-      // { path: "unos_rez", component: () => import("pages/RezervirajPage.vue") },
       { path: "pregled_rez", component: () => import("pages/PregledRezervacijaPage.vue") },
       { path: "info_stranica", component: () => import("pages/InfoPage.vue") },
       { path: "odjava", component: () => import("pages/OdjavaPage.vue") },
+      { path: "auth", component: () => import("pages/RegPage.vue") },
+      { path: "login", component: () => import("pages/LoginPage.vue") },
     ],
-  },
-
-  {
-    path: "/auth",
-    component: () => import("layouts/BlankLayout.vue"),
-    children: [{ path: "", component: () => import("pages/LoginPage.vue") }],
   },
 
 

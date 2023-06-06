@@ -45,8 +45,6 @@
         <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/dodaj_pjesmu/'+trenutniID)" label="Dodaj pjesmu" />
         <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/unos_rez/'+trenutniID)" label="Rezerviraj" />
         <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/')" label="Natrag na pregled DJ-eva" />
-        <!-- <q-btn style="background-color: red; color: white; top: 10px; right: 50px; transform: translateY(-50%)" icon="delete" class="absolute"
-           @click="deleteDJ(item.ID_DJ)" /> -->
       </q-card-section>
     </div>
 
@@ -126,18 +124,6 @@ const deletePjesma = async (id) => {
   }
   getPosts();
 }
-
-// // brisanje DJ
-// const deleteDJ = async (id) => {
-//   try {
-//     const response = await api.delete(`http://localhost:4200/obrisi_DJ/${id}`);
-//     console.log(response.data);
-
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   getPosts();
-// }
 
 
 onMounted(() => {

@@ -1,9 +1,6 @@
 <template>
   <q-page class="bg-black">
 
-    <!-- <q-input style="background-color: white" width="200px" outlined v-model="searchQuery" placeholder="Pretraži DJ-a..."
-      dense /> -->
-
     <div class="q-pa-md row items-start q-gutter-md">
 
       <q-card v-for="post in posts" :key="post.id" class="my-card">
@@ -51,18 +48,6 @@ const getPosts = async () => {
 
 }
 
-
-// const deleteById = async (id) => {
-//   try {
-//     const response = await api.delete(`http://localhost:4200/obrisi_DJ/${id}`);
-//     console.log(response.data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   getPosts();
-// }
-
-
 onMounted(() => {
   getPosts()
 })
@@ -75,9 +60,6 @@ const goToDJDetalji = (id) => {
     }
   })
 }
-
-
-// const searchQuery = ref('')
 
 </script>
 

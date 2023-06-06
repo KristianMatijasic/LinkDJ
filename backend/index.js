@@ -162,30 +162,6 @@ app.get('/pregled_rez', (req,res)=>{
   });
 });
 
-// //brisanje DJ-a
-// app.delete('/obrisi_DJ/:id', function (request, response) {
-//   let ID_DJ = request.params.id;
-
-//   console.log(`Primljen zahtjev za brisanje DJ-a s ID-om: ${ID_DJ}`); // Dodan ispravan ID u ispisu
-
-//   if (!ID_DJ) {
-//     return response.status(400).send({ error: true, message: 'Nedostaje ID DJ-a' });
-//   }
-
-//   const deleteQuery = "DELETE FROM DJ WHERE ID_DJ = ?";
-//   dbConn.query(deleteQuery, [ID_DJ], function (error, results) {
-//     if (error) {
-//       console.log(`Greška prilikom izvršavanja upita za brisanje: ${error}`);
-//       throw error;
-//     }
-
-//     console.log(`Rezultat brisanja: ${JSON.stringify(results)}`);
-
-//     return response.send({ error: false, data: results, message: 'DJ je obrisan.' });
-//   });
-// });
-
-
 // uzimanje podataka o pjesmama
 app.get("/pjesme", function (request, response) {
   dbConn.query("SELECT * FROM Pjesma", function (error, results, fields) {
@@ -245,7 +221,7 @@ app.delete('/obrisi_pjes/:id', function (request, response) {
     return response.send({ error: false, data: results, message: 'Pjesma je obrisana.' });
   });
 });
-
+ 
 // Registracija korisnika 
 app.post('/registracija',  (req, res) => {
   const { username, password } = req.body;
