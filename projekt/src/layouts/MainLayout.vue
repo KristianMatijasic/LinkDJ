@@ -62,13 +62,6 @@ const linksList = [
     target: "_self",
   },
   {
-    title: "Pregled rezervacija",
-    caption: "Pregledaj rezerirane termine...",
-    icon: "today",
-    link: "pregled_rez",
-    target: "_self",
-  },
-  {
     title: "O aplikaciji Link.DJ",
     caption: "Pročitaj informacije o apliakciji...",
     icon: "info",

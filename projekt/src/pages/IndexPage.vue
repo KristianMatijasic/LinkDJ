@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-black">
+  <q-page class="bg-image">
 
     <div class="q-pa-md row items-start q-gutter-md">
 
@@ -76,7 +76,7 @@ const goToDJDetalji = (id) => {
 }
 
 .bg-image {
-  background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
+  background-image: url(https://images.alphacoders.com/237/237133.jpg);
 
 }
 

@@ -50,6 +50,6 @@ export default {
 </style>
 <style>
 .bg-image {
-  background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
+  background-image: url(https://images.alphacoders.com/237/237133.jpg);
 }
 </style>

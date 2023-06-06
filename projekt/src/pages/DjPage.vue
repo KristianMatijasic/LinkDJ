@@ -43,8 +43,9 @@
     <div>
       <q-card-section class="q-gutter-lg">
         <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/dodaj_pjesmu/'+trenutniID)" label="Dodaj pjesmu" />
+        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/pregled_rez/'+trenutniID)" label="Pregled rezervacija" />
         <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/unos_rez/'+trenutniID)" label="Rezerviraj" />
-        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/')" label="Natrag na pregled DJ-eva" />
+        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/')" label="Natrag na početnu" />
       </q-card-section>
     </div>
 
@@ -96,8 +97,8 @@ const posts = ref([])
 const comments = ref([])
 const route = useRoute()
 const router = useRouter()
-
 const trenutniID = route.params.id
+
 const getPosts = async () => {
   try {
     const response = await api.get(`/DJ/${trenutniID}`)

@@ -134,31 +134,25 @@ app.get('/DJ/:id', function (request, response) {
 
 
 //pregled rez
-app.get('/pregled_rez/:id', function (request, response) {
-  let ID_rez = request.params.id;
-  if (!ID_rez) {
-      return response.status(400).send({
-          error: true, 
-          
-          message: 'Unesite id_rezervacije'
-      });
-  }
-  dbConn.query('SELECT * FROM Rezervacija where ID_rez=?', ID_rez, function
-      (error, results, fields) {
-      if (error) throw error;
-      return response.send({
-         data: results[0]
-              
-      });
-  });
-});
 app.get('/pregled_rez', (req,res)=>{
-  dbConn.query("select * from Rezervacija", (err,result)=>{
-      if(err){
+  dbConn.query("select * from Rezervacija", (error, result, fields)=>{
+      if(error){
           res.send('error');
       }else{
           res.send(result);
       }
+  });
+});
+
+app.get('/pregled_rez/:id', function (request, response) {
+  let ID_DJ = request.params.id;
+  dbConn.query('SELECT * FROM Rezervacija where VK_ID_DJJ=?', ID_DJ, function (error, results, fields) {
+      if (error) throw error;
+      return response.send({
+        error: false,
+        data: results,
+        message: "lista rezervacija.",          
+      });
   });
 });
 

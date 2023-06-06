@@ -1,8 +1,6 @@
 <template>
-    <!-- <div class="q-pa-md" style="background-color: black">
-    <q-btn class="center" style="background-color: red; color: white;" to="/" label="Natrag na pregled DJ-eva" />
-  </div> -->
 <q-page class="bg-image ">
+  <q-btn class="center" style="background-color: red; color: white; left: 10px; top: 15px" @click="$router.push('/one_dj/'+trenutniID)" label="Natrag na početnu" />
   <div class="q-pa-md">
     <h4 style="color: white;"><b>REZERVACIJE</b></h4>
     <q-table
@@ -36,8 +34,12 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import {api} from 'boot/axios';
+import { useRoute, useRouter } from 'vue-router';
 
 const posts = ref([])
+const route = useRoute()
+ const router = useRouter()
+ const trenutniID = route.params.id
 
 const columns = [
   { name: 'ime_rez', align: 'left', label: 'IME', field: 'ime_rez', sortable: true },
@@ -50,7 +52,7 @@ const columns = [
 
 const getPosts = async () => {
   try{
-    const response = await api.get('/pregled_rez')
+    const response = await api.get('/pregled_rez/')
     console.log(response.data)
     posts.value = response.data
 
@@ -69,7 +71,7 @@ onMounted(() => {
 <style>
 
 .bg-image {
-  background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
+  background-image: url(https://images.alphacoders.com/237/237133.jpg);
 }
 
 </style>
