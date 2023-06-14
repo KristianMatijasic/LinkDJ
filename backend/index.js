@@ -134,12 +134,12 @@ app.get('/DJ/:id', function (request, response) {
 
 
 //pregled rez
-app.get('/pregled_rez', (req,res)=>{
+app.get('/pregled_rez', (request, response)=>{
   dbConn.query("select * from Rezervacija", (error, result, fields)=>{
       if(error){
-          res.send('error');
+          response.send('error');
       }else{
-          res.send(result);
+          response.send(result);
       }
   });
 });
